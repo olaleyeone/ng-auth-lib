@@ -1,0 +1,21 @@
+{
+  "name": "auth-lib",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "ng build",
+    "clean:auth-api-sdk": "rimraf *.tgz ./sdk/auth-api-sdk",
+    "generate-auth-api-sdk": "npm run clean:auth-api-sdk && openapi-generator generate -g typescript-angular -i http://staging.tikioo.com/auth-api/v3/api-docs -o ./sdk/auth-api-sdk --additional-properties npmName=auth-api-sdk,snapshot=true,ngVersion=9.1.4,fileNaming=kebab-case,npmVersion=1.0.0,useSingleRequestParameter=true"
+  },
+  "peerDependencies": {
+    "@angular/common": "^10.0.3",
+    "@angular/core": "^10.0.3",
+    "moment": "^2.27.0"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^1.0.15-4.3.1",
+    "rimraf": "^3.0.2"
+  }
+}

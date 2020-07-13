@@ -6,5 +6,12 @@
 */
 {
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./projects/auth-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/auth-lib/tsconfig.spec.json"
+    }
+]
 }
