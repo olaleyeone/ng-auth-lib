@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { AuthenticationService } from '../service/authentication.service';
-import { SessionService } from '../service/session-service';
+import { AuthenticationService } from '../services/authentication.service';
+import { SessionStarter } from '../session/session-starter';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class ActiveUserGuard implements CanActivate {
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
-    private sessionService: SessionService) { }
+    private sessionService: SessionStarter) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -26,14 +26,6 @@ export class ActiveUserGuard implements CanActivate {
     return this.authenticationService.getUser()
       .pipe(map((user => {
         if (!user) {
-
-          // if (next.queryParams['targetUser']) {
-          //   queryParams['targetUser'] = next.queryParams['targetUser'];
-          // }
-          // queryParams['hasGeneratedPassword'] = next.queryParams['hasGeneratedPassword'];
-
-          // this.router.navigate(['/login'], { queryParams });
-
           this.sessionService.startSession(next, state);
           return false;
         }

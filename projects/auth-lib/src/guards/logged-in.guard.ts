@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
-import { AuthenticationService } from '../service/authentication.service';
+import { catchError, map } from 'rxjs/operators';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NotLoggedInGuard implements CanActivate {
+export class LoggedInGuard implements CanActivate {
 
   constructor(private router: Router, private authenticationService: AuthenticationService) { }
 
@@ -17,13 +16,14 @@ export class NotLoggedInGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.authenticationService.getUser()
       .pipe(map((user => {
-        if (user) {
-          this.router.navigate(['/dashboard']);
+        if (!user) {
+          this.router.navigate(['/login']);
         }
-        return !user;
+        return !!user;
       })))
-      .pipe(catchError((err: HttpErrorResponse, caught: Observable<any>) => {
-        return of(err.status === 401);
+      .pipe(catchError((err: any, caught: Observable<any>) => {
+        this.router.navigate(['/login']);
+        return of(false);
       }));
   }
 

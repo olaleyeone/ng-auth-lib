@@ -16,12 +16,12 @@ export class SimpleRouteProtectionService extends RouteProtectionService {
     while (route.firstChild) {
       route = route.firstChild;
     }
-    let activeUserGuard = await import('../guard/active-user.guard').then(m => m.ActiveUserGuard);
+    let activeUserGuard = await import('../guards/active-user.guard').then(m => m.ActiveUserGuard);
     let shouldPromptLogin = route.routeConfig?.canActivate?.includes(activeUserGuard);
     if (shouldPromptLogin) {
       return false;
     }
-    let loggedInGuard = await import('../guard/logged-in.guard').then(it => it.LoggedInGuard);
+    let loggedInGuard = await import('../guards/logged-in.guard').then(it => it.LoggedInGuard);
     return !route.routeConfig?.canActivate?.includes(loggedInGuard);
   }
 }
