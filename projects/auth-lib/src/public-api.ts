@@ -2,11 +2,14 @@
  * Public API Surface of auth-lib
  */
 
-export * from './guard/active-user.guard';
-export * from './guard/logged-in.guard';
-export * from './guard/not-logged-in.guard';
-export * from './model/user';
-export * from './service/authentication.service';
+export * from './guards/active-user.guard';
+export * from './guards/logged-in.guard';
+export * from './guards/not-logged-in.guard';
+export * from './models/user';
+export * from './services/authentication.service';
+export * from './services/route-protection-service';
+export * from './session/session-starter';
+export * from './services/simple-route-protection.service';
 export * from './session/http-interceptor';
 export * from './session/user-session';
-export * from './validator/unique-identifier-validator';
+export * from './validators/unique-identifier-validator';

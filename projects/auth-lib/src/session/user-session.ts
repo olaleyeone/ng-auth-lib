@@ -3,9 +3,9 @@ import { AccessTokenApiResponse, UserApiResponse } from 'auth-api-sdk';
 import * as moment from 'moment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { User } from '../model/user';
-import { SessionService } from '../service/session-service';
-import { RouteProtectionService } from '../service/route-protection-service';
+import { User } from '../models/user';
+import { SessionStarter } from './session-starter';
+import { RouteProtectionService } from '../services/route-protection-service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class UserSession {
 
   public constructor(
     private routeProtectionService: RouteProtectionService,
-    private sessionService: SessionService) {
+    private sessionService: SessionStarter) {
 
     this._user = new BehaviorSubject<User>(undefined);
     this.userObservable = this._user.pipe(filter(it => it !== undefined));

@@ -2,7 +2,7 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { EventEmitter, Injectable, InjectionToken, Injector } from '@angular/core';
 import { AsyncSubject, Observable, of } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
-import { AuthenticationService } from '../service/authentication.service';
+import { AuthenticationService } from '../services/authentication.service';
 import { UserSession } from './user-session';
 
 @Injectable()

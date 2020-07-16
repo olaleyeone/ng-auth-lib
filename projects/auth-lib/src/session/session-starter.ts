@@ -1,7 +1,7 @@
 import { AccessTokenApiResponse } from 'auth-api-sdk';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
-export abstract class SessionService {
+export abstract class SessionStarter {
 
     abstract handleExpiredSession(token: AccessTokenApiResponse);
 
