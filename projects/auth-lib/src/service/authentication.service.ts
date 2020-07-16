@@ -1,6 +1,15 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AccessTokenApiResponse, AccessTokenControllerService, LoginApiRequest, LoginControllerService, LogoutControllerService, PasswordResetControllerService, PasswordUpdateControllerService, UserApiResponse } from 'auth-api-sdk';
+import {
+  AccessTokenApiResponse,
+  AccessTokenControllerService,
+  LoginApiRequest,
+  LoginControllerService,
+  LogoutControllerService,
+  PasswordResetControllerService,
+  PasswordUpdateControllerService,
+  UserApiResponse
+} from 'auth-api-sdk';
 import { AsyncSubject, Observable, throwError, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { UserSession } from '../session/user-session';

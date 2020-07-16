@@ -6,9 +6,12 @@ import { TestBed } from '@angular/core/testing';
 import {
     AccessTokenApiResponse,
     AccessTokenControllerService,
-    LoginApiRequest, LoginControllerService, LogoutControllerService,
+    LoginApiRequest,
+    LoginControllerService,
+    LogoutControllerService,
     PasswordResetControllerService,
-    PasswordUpdateApiRequest, PasswordUpdateControllerService,
+    PasswordUpdateApiRequest,
+    PasswordUpdateControllerService,
     UserApiResponse
 } from 'auth-api-sdk';
 import { of, throwError } from 'rxjs';

@@ -2,10 +2,16 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "../../out-tsc/spec",
     "types": [
       "jasmine"
-    ]
+    ],
+    "paths": {
+      "auth-api-sdk": [
+        "./sdk/auth-api-sdk/index.ts"
+      ]
+    }
   },
   "files": [
     "src/test.ts"

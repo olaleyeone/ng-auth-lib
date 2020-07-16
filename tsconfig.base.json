@@ -19,9 +19,6 @@
       "auth-lib": [
         "dist/auth-lib/auth-lib",
         "dist/auth-lib"
-      ],
-      "auth-api-sdk": [
-        "./projects/auth-lib/sdk/auth-api-sdk/index.ts"
       ]
     }
   }
