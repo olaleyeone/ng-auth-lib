@@ -1,16 +1,16 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { AccessTokenApiResponse, UserApiResponse } from 'auth-api-sdk';
 import * as moment from 'moment';
-import { User } from '../model/user';
-import { SessionService } from '../service/session-service';
-import { RouteProtectionService } from '../service/route-protection-service';
+import { User } from '../models/user';
+import { RouteProtectionService } from '../services/route-protection-service';
+import { SessionStarter } from '../session/session-starter';
 import { UserSession } from './user-session';
 
 describe('UserSession', () => {
 
     let accessTokenApiResponse: AccessTokenApiResponse;
     let routeProtectionService: RouteProtectionService;
-    let sessionService: SessionService;
+    let sessionService: SessionStarter;
     let session: UserSession;
 
     beforeEach(() => {
@@ -30,7 +30,7 @@ describe('UserSession', () => {
                     useValue: routeProtectionService
                 },
                 {
-                    provide: SessionService,
+                    provide: SessionStarter,
                     useValue: sessionService
                 }
             ]

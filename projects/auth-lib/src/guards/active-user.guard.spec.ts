@@ -2,10 +2,10 @@ import { TestBed } from '@angular/core/testing';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Observable, of, throwError } from 'rxjs';
-import { User } from '../model/user';
-import { AuthenticationService } from '../service/authentication.service';
+import { User } from '../models/user';
+import { AuthenticationService } from '../services/authentication.service';
+import { SessionStarter } from '../session/session-starter';
 import { ActiveUserGuard } from './active-user.guard';
-import { SessionService } from '../service/session-service';
 
 
 describe('ActiveUserGuard', () => {
@@ -14,7 +14,7 @@ describe('ActiveUserGuard', () => {
     let router: Router;
     let authService: AuthenticationService;
     let routerStateSnapshot: RouterStateSnapshot;
-    let sessionService: SessionService;
+    let sessionService: SessionStarter;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -29,7 +29,7 @@ describe('ActiveUserGuard', () => {
                     } as any
                 },
                 {
-                    provide: SessionService,
+                    provide: SessionStarter,
                     useValue: {
                         startSession: () => { }
                     } as any
@@ -39,7 +39,7 @@ describe('ActiveUserGuard', () => {
 
         guard = TestBed.inject(ActiveUserGuard);
         authService = TestBed.inject(AuthenticationService);
-        sessionService = TestBed.inject(SessionService);
+        sessionService = TestBed.inject(SessionStarter);
         router = TestBed.get(Router);
         spyOn(router, 'navigate');
         routerStateSnapshot = { url: '/url' } as RouterStateSnapshot;

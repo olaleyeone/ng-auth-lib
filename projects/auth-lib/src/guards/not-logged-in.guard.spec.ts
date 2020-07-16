@@ -3,8 +3,8 @@ import { TestBed } from '@angular/core/testing';
 import { Router, UrlTree } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Observable, of, throwError } from 'rxjs';
-import { User } from '../model/user';
-import { AuthenticationService } from '../service/authentication.service';
+import { User } from '../models/user';
+import { AuthenticationService } from '../services/authentication.service';
 import { NotLoggedInGuard } from './not-logged-in.guard';
 
 describe('NotLoggedInGuard', () => {

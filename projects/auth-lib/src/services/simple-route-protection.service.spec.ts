@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ActiveUserGuard } from '../guard/active-user.guard';
-import { LoggedInGuard } from '../guard/logged-in.guard';
+import { ActiveUserGuard } from '../guards/active-user.guard';
+import { LoggedInGuard } from '../guards/logged-in.guard';
 import { SimpleRouteProtectionService } from './simple-route-protection.service';
 
 

@@ -1,12 +1,12 @@
-import { TestBed } from '@angular/core/testing';
-
-import { LoggedInGuard } from './logged-in.guard';
-import { Router, UrlTree } from '@angular/router';
-import { of, Observable, throwError } from 'rxjs';
-import { AuthenticationService } from '../service/authentication.service';
-import { User } from '../model/user';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
+import { Router, UrlTree } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Observable, of, throwError } from 'rxjs';
+import { User } from '../models/user';
+import { AuthenticationService } from '../services/authentication.service';
+import { LoggedInGuard } from './logged-in.guard';
+
 
 describe('LoggedInGuard', () => {
 
