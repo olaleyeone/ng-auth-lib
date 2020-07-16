@@ -48,3 +48,4 @@ Thumbs.db
 package-lock.json
 sdk/
 proxy.conf.local.json
+.github
