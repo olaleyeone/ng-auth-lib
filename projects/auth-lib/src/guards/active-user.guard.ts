@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, take } from 'rxjs/operators';
 import { AuthenticationService } from '../services/authentication.service';
 import { SessionStarter } from '../session/session-starter';
 
@@ -24,6 +24,7 @@ export class ActiveUserGuard implements CanActivate {
     };
 
     return this.authenticationService.getUser()
+      .pipe(take(1))
       .pipe(map((user => {
         if (!user) {
           this.sessionService.startSession(next, state);
