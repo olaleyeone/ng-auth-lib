@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import {
   AccessTokenApiResponse,
   AccessTokenControllerService,
-  LoginApiRequest,
-  LoginControllerService,
+  PasswordLoginApiRequest,
+  PasswordLoginControllerService,
   LogoutControllerService,
   PasswordResetControllerService,
   PasswordUpdateControllerService,
@@ -24,7 +24,7 @@ export class AuthenticationService {
   constructor(
     private userSession: UserSession,
     private accessTokenControllerService: AccessTokenControllerService,
-    private loginController: LoginControllerService,
+    private loginController: PasswordLoginControllerService,
     private logoutController: LogoutControllerService,
     private passwordResetControllerService: PasswordResetControllerService,
     private passwordUpdateControllerService: PasswordUpdateControllerService
@@ -36,8 +36,8 @@ export class AuthenticationService {
     return this.userSession.user;
   }
 
-  login(loginApiRequest: LoginApiRequest) {
-    return this.loginController.login({ loginApiRequest })
+  login(loginApiRequest: PasswordLoginApiRequest) {
+    return this.loginController.login({ passwordLoginApiRequest: loginApiRequest })
       .pipe(tap(accessTokenApiResponse => {
         this.userSession.setUser(accessTokenApiResponse);
       }));
