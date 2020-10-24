@@ -4,8 +4,8 @@ import * as moment from 'moment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { User } from '../models/user';
-import { SessionStarter } from './session-starter';
 import { RouteProtectionService } from '../services/route-protection-service';
+import { SessionStarter } from './session-starter';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,9 @@ export class UserSession {
   private _user: BehaviorSubject<User | null>;
   private userObservable: Observable<User>;
 
+  private _token: BehaviorSubject<AccessTokenApiResponse | null>;
+  private tokenObservable: Observable<AccessTokenApiResponse>;
+
   private accessTokenApiResponse: AccessTokenApiResponse;
 
   public constructor(
@@ -23,6 +26,9 @@ export class UserSession {
 
     this._user = new BehaviorSubject<User>(undefined);
     this.userObservable = this._user.pipe(filter(it => it !== undefined));
+
+    this._token = new BehaviorSubject<AccessTokenApiResponse>(undefined);
+    this.tokenObservable = this._token.pipe(filter(it=>it!==undefined));
   }
 
   isLoggedIn() {
@@ -39,6 +45,7 @@ export class UserSession {
 
   setUser(accessTokenApiResponse: AccessTokenApiResponse) {
     this.accessTokenApiResponse = accessTokenApiResponse;
+    this._token.next(accessTokenApiResponse);
     // const phoneNumberData = accessTokenApiResponse.data.filter(it => it.key === 'phoneNumber');
 
     const user = {
@@ -89,5 +96,13 @@ export class UserSession {
 
   get user() {
     return this.userObservable;
+  }
+
+  get accessToken() {
+    return this.tokenObservable;
+  }
+
+  getAccessToken() {
+    return this._token.value;
   }
 }
