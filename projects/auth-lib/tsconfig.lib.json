@@ -14,7 +14,7 @@
     ],
     "paths": {
       "auth-api-sdk": [
-        "./sdk/auth-api-sdk/index.ts"
+        "./src/sdk/auth-api-sdk/index.ts"
       ]
     }
   },

@@ -58,9 +58,9 @@ export class AuthenticationService {
   //     }));
   // }
 
-  resetPassword(data: { identifier: string, resetToken: string, password: string }) {
-    return this.passwordResetControllerService.resetPasswordWithResetToken({
-      identifier: data.identifier,
+  resetPassword(data: { email: string, resetToken: string, password: string }) {
+    return this.passwordResetControllerService.resetPasswordWithEmailAndResetToken({
+      email: data.email,
       resetToken: data.resetToken,
       passwordResetApiRequest: {
         password: data.password
